@@ -2,31 +2,22 @@ class ListsController < ApplicationController
   before_action :set_list, only: [ :edit, :update, :destroy]
   before_action :authenticate_user!
   before_action :check_user
+  before_action :set_user
+  before_action :set_user_lists, only: [ :show, :edit, :update, :destroy]
 
   def index
-    @user = User.find(params[:user_id])
     @lists = @user.lists
   end
 
-  def show
-    @user = User.find(params[:user_id])
-    @list = @user.lists.find(params[:id])
-  end
+  def show; end
 
   def new
-    @user = User.find(params[:user_id])
     @list = @user.lists.new
   end
 
-  def edit
-    @user = User.find(params[:user_id])
-    @list = @user.lists.find(params[:id])
-  end
+  def edit; end
 
   def update
-    @user = User.find(params[:user_id])
-    @list = @user.lists.find(params[:id])
-
     if @list.update(list_params)
       respond_to do |format|
         format.js
@@ -38,9 +29,7 @@ class ListsController < ApplicationController
   end
 
   def create
-    @user = User.find(params[:user_id])
     @list = @user.lists.create(list_params)
-
     if @list.save
       respond_to do |format|
         format.js
@@ -52,9 +41,6 @@ class ListsController < ApplicationController
   end
 
   def destroy
-    @user = User.find(params[:user_id])
-    @list = @user.lists.find(params[:id])
-
     if @list.destroy
       respond_to do |format|
         format.js
@@ -79,4 +65,11 @@ class ListsController < ApplicationController
     params.require(:list).permit(:title)
   end
 
+  def set_user
+    @user = User.find(params[:user_id])
+  end
+
+  def set_user_lists
+    @list = @user.lists.find(params[:id])
+  end
 end
