@@ -1,2 +1,7 @@
-<h1>Lists#index</h1>
-<p>Find me in app/views/lists/index.html.erb</p>
+<%= render @lists %>
+<div class="new_list">
+  <%= link_to new_user_list_path(current_user), remote: true, class: "btn btn-primary btn-lg" do %>
+    <i class="fa fa-plus fa-lg"></i>
+    <text>Add TODO List</text>
+  <% end %>
+</div>

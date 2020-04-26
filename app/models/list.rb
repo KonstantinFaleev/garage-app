@@ -1,10 +1,6 @@
 class List < ApplicationRecord
   belongs_to :user
   has_many :tasks, dependent: :destroy
+  has_many :tasks, -> { order(position: :asc) }
 
-  acts_as_list scope: :list
-
-  def completed?
-    !done.blank?
-  end
 end

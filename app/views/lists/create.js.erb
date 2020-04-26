@@ -1,0 +1,5 @@
+$('#blocks .container').last().remove();
+$('body #blocks').append("<%= j render @list %>");
+$('#blocks .new_list').show().detach().appendTo('#blocks');
+$('.footer').remove();
+$('#list_<%= @list[:id] %> .items_list').hide();

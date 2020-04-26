@@ -1,0 +1,4 @@
+$('#list_<%= @list[:id] %> .items_list').show();
+$('#list_<%= @list[:id] %> .items_list').prepend("<%= j render @task %>");
+$(".my_id").val("");
+$('#list_<%= @list[:id] %> #item_').remove();

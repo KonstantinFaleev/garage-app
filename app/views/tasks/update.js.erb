@@ -1,0 +1,6 @@
+$('#list_<%= @list[:id] %> form').last().remove();
+$('#list_<%= @list[:id] %> .row').last().remove();
+$('#list_<%= @list[:id] %> .index_row').last().remove();
+$('#list_<%= @list[:id] %> .row').show().parent();
+$('#list_<%= @list[:id] %> .todo_items_wrapper').show().parent();
+$('#list_<%= @list[:id] %> #item_<%= @task.id %>').replaceWith("<%= j render @task %>");

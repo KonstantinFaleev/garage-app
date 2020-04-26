@@ -18,6 +18,35 @@ class TasksController < ApplicationController
     end
   end
 
+  def task_up
+    if @task.move_higher
+      respond_to do |format|
+        format.js
+        # format.html { redirect_to action: 'index' }
+      end
+    end
+  end
+
+  def task_down
+    if @task.move_lower
+      respond_to do |format|
+        format.js
+        # format.html { redirect_to action: 'index' }
+      end
+    end
+  end
+
+  def destroy
+    if @task.destroy
+      respond_to do |format|
+        format.js
+        format.html { redirect_to action: 'index', notice: 'Item was deleted.' }
+      end
+    end
+  end
+
+  def edit; end
+
   def update
     if @task.update(task_params)
       if @task[:deadline] != nil
@@ -36,9 +65,7 @@ class TasksController < ApplicationController
     end
   end
 
-  def edit; end
-
-  def done
+  def complete
     if @task.completed?
       @task.update_attribute(:done, nil)
       @task.update_attribute(:deadline, nil)
@@ -48,33 +75,6 @@ class TasksController < ApplicationController
     respond_to do |format|
       format.js
       format.html { redirect_to action: 'index', notice: 'Item was updated.' }
-    end
-  end
-
-  def task_up
-    if @task.move_higher
-      respond_to do |format|
-        format.js
-        format.html { redirect_to action: 'index' }
-      end
-    end
-  end
-
-  def task_down
-    if @task.move_lower
-      respond_to do |format|
-        format.js
-        format.html { redirect_to action: 'index' }
-      end
-    end
-  end
-
-  def destroy
-    if @task.destroy
-      respond_to do |format|
-        format.js
-        format.html { redirect_to action: 'index', notice: 'Item was deleted.' }
-      end
     end
   end
 
@@ -89,6 +89,6 @@ class TasksController < ApplicationController
   end
 
   def task_params
-    params.require(:task).permit(:deadline, :done)
+    params.require(:task).permit(:deadline, :name)
   end
 end

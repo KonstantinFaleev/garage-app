@@ -1,0 +1,31 @@
+<div class="container">
+  <% @list = list %>
+  <div class="index_row clearfix" >
+    <div id="list_<%= list[:id] %>">
+      <div class="row clearfix">
+        <div class='icon'>
+          <i class="far fa-calendar-check fa-2x"></i>
+        </div>
+        <div class="todo_list_title">
+          <p><%= list.title %></p>
+        </div>
+        <div class="top_links">
+          <%= link_to edit_user_list_path(@user, list), remote: true do %>
+            <i class="fas fa-pencil-alt fa-lg"></i>
+          <% end %>
+          <%= link_to user_list_path(current_user, list), method: :delete, data: { confirm: 'Are you sure?', remote: true }, class: "delete" do %>
+            <i class="far fa-trash-alt fa-lg"></i>
+          <% end %>
+        </div>
+      </div>
+      <div class="todo_items_wrapper">
+        <div class="form">
+          <%= render "tasks/form" %>
+        </div>
+        <div class="items_list">
+          <%= render list.tasks.reverse %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

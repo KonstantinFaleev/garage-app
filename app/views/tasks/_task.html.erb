@@ -1,0 +1,27 @@
+<div id="item_<%= task.id %>">
+  <div class="row clearfix">
+    <% if task[:id]!=nil %>
+      <% if task.completed? %>
+        <div class="complete">
+          <%= link_to complete_user_list_task_path(current_user, task[:list_id], task.id), method: :patch, remote: true, class: "checkbox" do %>
+            <input type="checkbox" checked="true" value="" style="zoom:1.5; vertical-align:middle;">
+          <% end %>
+        </div>
+        <div class="todo_item">
+          <p style="opacity: 0.4; text-decoration: line-through;"><%= task.name %></p>
+        </div>
+        <%= render partial: 'tasks/button', locals: {task: task, current_user: current_user} %>
+      <% else %>
+        <div class="complete">
+          <%= link_to complete_user_list_task_path(current_user, task[:list_id], task.id), method: :patch, remote: true, class: "checkbox" do %>
+            <input type="checkbox" value="" style="zoom:1.5; vertical-align:middle;">
+          <% end %>
+        </div>
+        <div class="todo_item">
+          <p><%= task.name %></p>
+        </div>
+        <%= render partial: 'tasks/button', locals: {task: task, current_user: current_user} %>
+      <% end %>
+    <% end %>
+  </div>
+</div>

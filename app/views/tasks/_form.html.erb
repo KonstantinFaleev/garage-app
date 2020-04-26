@@ -1,0 +1,5 @@
+<%=  form_with model:([@list, @list.tasks.build]), remote: true do |f| %>
+  <i class="fa fa-plus fa-lg"></i>
+  <%= f.text_field :name, placeholder: "Start typing here to create a task...", class: "my_id", required: true %>
+  <%= f.submit %>
+<% end %>
