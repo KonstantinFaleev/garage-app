@@ -61,7 +61,7 @@ ORDER BY COUNT(tasks)`
 
 **8. get the list of project names having more than 10 tasks in status 'completed'. Order by 
 project_id**
-`SELECt  projects.name
+`SELECT  projects.name
 FROM tasks RIGTH JOIN projects
 ON tasks.projects_id = projects.id
 WHERE tasks.status = 'completed'
