@@ -1,7 +1,7 @@
 $('#list_<%= @list[:id] %> .row').hide();
 $('#list_<%= @list[:id] %>').append("<%= j render 'edit' %>")
 $(function() {
-    $('#todo_item_deadline').datepicker({
+    $('#task_deadline').datepicker({
         dateFormat: "yy-mm-dd",
     });
 });
