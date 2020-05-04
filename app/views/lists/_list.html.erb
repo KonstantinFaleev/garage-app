@@ -13,8 +13,10 @@
           <%= link_to edit_user_list_path(@user, list), remote: true do %>
             <i class="fas fa-pencil-alt fa-lg"></i>
           <% end %>
-          <%= link_to user_list_path(current_user, list), method: :delete, data: { confirm: 'Are you sure?', remote: true }, class: "delete" do %>
-            <i class="far fa-trash-alt fa-lg"></i>
+          <% if list.user == current_user %>
+            <%= link_to user_list_path(current_user, list), method: :delete, data: { confirm: 'Are you sure?', remote: true }, class: "delete" do %>
+              <i class="far fa-trash-alt fa-lg"></i>
+            <% end %>
           <% end %>
         </div>
       </div>
