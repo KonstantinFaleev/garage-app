@@ -29,7 +29,7 @@ class ListsController < ApplicationController
   end
 
   def create
-    @list = @user.lists.create(list_params)
+    @list = @user.lists.build(list_params)
     if @list.save
       respond_to do |format|
         format.js
