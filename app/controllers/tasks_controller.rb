@@ -7,13 +7,13 @@ class TasksController < ApplicationController
   end
 
   def create
-    @task = @list.tasks.create(task_params)
-    if @task
+    @task = @list.tasks.build(task_params)
+    if @task.save
       respond_to do |format|
         format.js
       end
     else
-      flash[:danger] = 'Item cannot be empty'
+      flash[:danger] = @task.errors.full_messages
     end
   end
 
@@ -56,7 +56,7 @@ class TasksController < ApplicationController
         format.js
       end
     else
-      flash[:danger] = 'Item cannot be empty'
+      flash[:danger] = @task.errors.full_messages
     end
   end
 

@@ -24,19 +24,20 @@ class ListsController < ApplicationController
         format.html { redirect_to action: 'index', notice: 'List was updated.' }
       end
     else
-      flash[:danger] = 'List cannot be empty'
+      flash[:danger] = @list.errors.full_messages
     end
   end
 
   def create
     @list = @user.lists.build(list_params)
+    @list.title = list_params[:title].squish
     if @list.save
       respond_to do |format|
         format.js
         format.html { redirect_to action: 'index', notice: 'List was successfully created.' }
       end
     else
-      flash[:danger] = 'List cannot be empty'
+      flash[:danger] = @list.errors.full_messages
     end
   end
 
