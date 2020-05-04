@@ -1,5 +1,6 @@
 class TasksController < ApplicationController
   before_action :set_list
+  before_action :authenticate_user!
   before_action :set_task, except: [:create, :new]
 
   def new
