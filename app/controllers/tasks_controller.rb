@@ -76,7 +76,7 @@ class TasksController < ApplicationController
   private
 
   def check_user
-    if current_user != User.find(params[:user_id])
+    if current_user != User.find(@list.user_id)
       redirect_to root_path
     end
   end
