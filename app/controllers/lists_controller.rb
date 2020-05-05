@@ -1,5 +1,6 @@
 class ListsController < ApplicationController
   before_action :set_list, only: [ :edit, :update, :destroy]
+  before_action :authenticate_user!
   before_action :check_user
   before_action :set_user
   before_action :set_user_lists, only: [ :show, :edit, :update, :destroy]
