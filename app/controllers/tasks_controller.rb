@@ -1,6 +1,6 @@
 class TasksController < ApplicationController
   before_action :set_list
-  before_action :authenticate_user!
+  before_action :check_user
   before_action :set_task, except: [:create, :new]
 
   def new
@@ -74,6 +74,12 @@ class TasksController < ApplicationController
   end
 
   private
+
+  def check_user
+    if current_user != User.find(params[:user_id])
+      redirect_to root_path
+    end
+  end
 
   def set_list
     @list = List.find(params[:list_id])
